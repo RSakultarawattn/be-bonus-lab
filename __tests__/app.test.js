@@ -24,14 +24,15 @@ describe('app tests', () => {
         
       });
   
-    expect(response).toEqual({
+    expect(response.body).toEqual({
+      id: '1',
       content: 'Be Careful Not To Choke On Your Convictions. - Darth Vader'
 
     });
   });
 
   it('finds a quote by id via GET', async() => {
-    const quote = await Quote.insert({content: 'Be Careful Not To Choke On Your Convictions. - Darth Vader' });
+    const quote = await Quote.insert({ content: 'Train yourself to let go of everything you fear to lose. - Yoda' });
     
     const response = await request(app)
       .get(`/api/v1/quotes/${quote.id}`);
@@ -39,11 +40,11 @@ describe('app tests', () => {
     expect(response.body).toEqual(quote);
   });
     
-  it('updates a lightsaber by id via PUT', async() => {
+  it('updates a quote by id via PUT', async() => {
     const quote = await Quote.insert({ content: 'Train yourself to let go of everything you fear to lose. - Yoda' });
     
     const response = await request(app)
-      .put(`/api/v1/lightsabers/${quote.id}`)
+      .put(`/api/v1/quotes/${quote.id}`)
       .send({
         content: 'Train yourself to let go of everything you fear to lose. - Yoda'
         
