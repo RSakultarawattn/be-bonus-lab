@@ -34,7 +34,7 @@ describe('app tests', () => {
     const quote = await Quote.insert({content: 'Be Careful Not To Choke On Your Convictions. - Darth Vader' });
     
     const response = await request(app)
-      .get(`/api/v1/quotes/${quote.id}`);w
+      .get(`/api/v1/quotes/${quote.id}`);
     
     expect(response.body).toEqual(quote);
   });
