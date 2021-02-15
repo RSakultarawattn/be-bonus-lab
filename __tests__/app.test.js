@@ -20,13 +20,13 @@ describe('app tests', () => {
     const response = await request(app)
       .post('/api/v1/quotes')
       .send({
-        content: 'Be Careful Not To Choke On Your Convictions. - Darth Vader'
+        content: 'I’m one with the Force. The Force is with me. — Chirrut Îmwe'
         
       });
   
     expect(response.body).toEqual({
-      id: '1',
-      content: 'Be Careful Not To Choke On Your Convictions. - Darth Vader'
+      id: expect.any(String),
+      content: 'I’m one with the Force. The Force is with me. — Chirrut Îmwe'
 
     });
   });
@@ -41,7 +41,7 @@ describe('app tests', () => {
   });
     
   it('updates a quote by id via PUT', async() => {
-    const quote = await Quote.insert({ content: 'Train yourself to let go of everything you fear to lose. - Yoda' });
+    const quote = await Quote.insert({ content: 'There’s always a bigger fish. — Qui-Gon Jinn' });
     
     const response = await request(app)
       .put(`/api/v1/quotes/${quote.id}`)
